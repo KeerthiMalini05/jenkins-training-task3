@@ -4,15 +4,13 @@ pipeline {
     stages {
         stage('build'){
             steps{
-            sh 'mvn clean package'    
-            sh 'java -jar target/spring-boot-web.jar'
+            sh 'mvn clean package'
             }
         }
 
         stage('deploy'){
             steps{
-                sh 'docker build -t spring-boot-t3'
-                
+                sh 'docker build -t spring-boot-t3 .'   
             }
         }
     }
