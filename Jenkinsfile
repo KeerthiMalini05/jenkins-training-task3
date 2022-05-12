@@ -10,15 +10,15 @@ pipeline {
 
         stage('deploy'){
             steps{
-                sh 'docker build -t hariv-jenkins-task3:latest .'   
+                sh 'docker build -t keerthi-jenkins-task3 .'   
             }
         }
 
         stage('push ECR'){
             steps{
-                withDockerRegistry( [ credentialsId: "ecr:us-east-1:aws.credentials", url: "https://590852515231.dkr.ecr.us-east-1.amazonaws.com" ] ){
-                    sh 'docker tag hariv-jenkins-task3:latest 590852515231.dkr.ecr.us-east-1.amazonaws.com/hariv-jenkins-task3:$BUILD_NUMBER'
-                    sh 'docker push 590852515231.dkr.ecr.us-east-1.amazonaws.com/hariv-jenkins-task3:$BUILD_NUMBER'
+                withDockerRegistry( [ credentialsId: "ecr:us-east-1:aws-credentials", url: "https://590852515231.dkr.ecr.us-east-1.amazonaws.com" ] ){
+                    sh 'docker tag keerthi-jenkins-task3:latest 590852515231.dkr.ecr.us-east-1.amazonaws.com/keerthi-jenkins-task3:latest'
+                    sh 'docker push 590852515231.dkr.ecr.us-east-1.amazonaws.com/keerthi-jenkins-task3:latest'
                 }  
 
             }
