@@ -2,6 +2,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Tagging the build') {
+            steps {
+                sh 'git tag build-$BUILD_NUMBER'
+                withCredentials([gitUsernamePassword(credentialsId: 'jenkins-task3', gitToolName: 'git-tool')]) {
+            sh "git push --tags"
+          }
+            }
+        }
         stage('build'){
             steps{
             sh 'mvn clean package'
